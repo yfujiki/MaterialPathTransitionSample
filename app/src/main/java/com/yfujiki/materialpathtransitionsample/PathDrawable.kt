@@ -5,7 +5,10 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 
-class PathDrawable(val context: Context): Drawable() {
+data class NormalizedPoint(val x: Float, val y: Float)
+
+class PathDrawable(val points: List<NormalizedPoint>, val context: Context): Drawable() {
+
     private val path: Path = {
         val p = Path()
         p
@@ -20,11 +23,6 @@ class PathDrawable(val context: Context): Drawable() {
 
         p
     }()
-
-    private var startPath = listOf(
-        Pair(0.2f, 0.5f),
-        Pair(0.8f, 0.5f)
-    )
 
     init {
     }
@@ -49,9 +47,9 @@ class PathDrawable(val context: Context): Drawable() {
 
         val b = bounds
 
-        startPath.forEachIndexed { index, startPoint ->
-            val x = startPoint.first
-            val y = startPoint.second
+        points.forEachIndexed { index, point ->
+            val x = point.x
+            val y = point.y
 
             if (index == 0) {
                 path.moveTo(x * b.width(), y * b.height())
