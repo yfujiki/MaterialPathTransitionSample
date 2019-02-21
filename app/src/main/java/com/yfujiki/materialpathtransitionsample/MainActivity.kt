@@ -8,7 +8,6 @@ import android.transition.ChangeBounds
 import android.transition.ChangeTransform
 import android.transition.TransitionSet
 
-
 class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
