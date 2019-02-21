@@ -2,7 +2,12 @@ package com.yfujiki.materialpathtransitionsample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
+import kotlinx.android.synthetic.main.fragment_main.*
+import android.os.Build
+import android.transition.ChangeBounds
+import android.transition.ChangeTransform
+import android.transition.TransitionSet
+
 
 class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListener {
 
@@ -21,11 +26,19 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
     }
 
     override fun mapButtonClicked() {
+
+
         println("Map button clicked")
         val fragmentManager = supportFragmentManager
         val fragment = MapFragment(this)
+
+        val details = TransitionSet()
+        details.addTransition(ChangeBounds())
+        fragment.sharedElementEnterTransition = details
+
         fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
+            .addSharedElement(pathCanvas, getString(R.string.path_canvas_transition))
             .commit()
     }
 
