@@ -23,6 +23,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:transitionName="@string/path_canvas_transition"
     />
 
     <Button android:id="@+id/button"
