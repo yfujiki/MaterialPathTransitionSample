@@ -18,7 +18,7 @@ class MapFragment(val listener: MapFragmentListener): Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
 
-        var drawable = AnimatablePathDrawable(INITIAL_PATH, activity!!.applicationContext)
+        var drawable = AnimatablePathDrawable(INITIAL_PATH.toMutableList(), activity!!.applicationContext)
         view.pathCanvas.background = drawable
 
         drawable.startAnimating(listOf(
@@ -36,6 +36,7 @@ class MapFragment(val listener: MapFragmentListener): Fragment() {
         ))
 
         view.button.setOnClickListener({
+            drawable.startAnimating(INITIAL_PATH)
             listener.closeButtonClicked()
         })
 

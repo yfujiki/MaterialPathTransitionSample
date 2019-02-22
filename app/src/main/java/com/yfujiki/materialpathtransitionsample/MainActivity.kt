@@ -45,8 +45,14 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
         println("Close button clicked")
         val fragmentManager = supportFragmentManager
         val fragment = MainFragment(this)
+
+        val details = TransitionSet()
+        details.addTransition(ChangeBounds())
+        fragment.sharedElementEnterTransition = details
+
         fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
+            .addSharedElement(pathCanvas, getString(R.string.path_canvas_transition))
             .commit()
     }
 }
