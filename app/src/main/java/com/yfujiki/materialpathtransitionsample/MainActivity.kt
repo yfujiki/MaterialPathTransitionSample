@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import android.os.Build
 import android.transition.ChangeBounds
 import android.transition.ChangeTransform
+import android.transition.Fade
 import android.transition.TransitionSet
 
 
@@ -34,8 +35,12 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val details = TransitionSet()
             details.addTransition(ChangeBounds())
+            details.setDuration(1000)
             fragment.sharedElementEnterTransition = details
         }
+
+        fragmentManager.fragments.first().exitTransition = FADE_OUT_TRANSITION
+        fragment.enterTransition = FADE_IN_TRANSITION
 
         fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
@@ -51,8 +56,12 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val details = TransitionSet()
             details.addTransition(ChangeBounds())
+            details.setDuration(200)
             fragment.sharedElementEnterTransition = details
         }
+
+        fragmentManager.fragments.first().exitTransition = FADE_OUT_TRANSITION
+        fragment.enterTransition = FADE_IN_TRANSITION
 
         fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
