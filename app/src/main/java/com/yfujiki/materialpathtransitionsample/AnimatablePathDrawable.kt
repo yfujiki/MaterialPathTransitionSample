@@ -60,7 +60,7 @@ class AnimatablePathDrawable(points: MutableList<NormalizedPoint>, context: Cont
             if (point.x == x) {
                 return point.y
             } else if (point.x > x) {
-                return (point.y - points[index - 1].y) * (x - points[index - 1].x) / (point.x - points[index - 1].x)
+                return (point.y - points[index - 1].y) * (x - points[index - 1].x) / (point.x - points[index - 1].x) + points[index - 1].y
             }
         }
 
