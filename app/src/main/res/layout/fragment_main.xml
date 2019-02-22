@@ -8,6 +8,8 @@
     <TextView
             android:id="@+id/textView"
             android:text="@string/loren_ipsum"
+            android:layout_margin="32dp"
+            android:paddingTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -17,7 +19,10 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="#00000000"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+    />
 
     <Button android:id="@+id/button"
             android:text="@string/open_map"
