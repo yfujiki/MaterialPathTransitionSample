@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import android.os.Build
 import android.transition.ChangeBounds
 import android.transition.ChangeTransform
+import android.transition.Fade
 import android.transition.TransitionSet
 
 class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListener {
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
 
         val details = TransitionSet()
         details.addTransition(ChangeBounds())
+        details.setDuration(1000)
+
+        fragmentManager.fragments.first().exitTransition = FADE_OUT_TRANSITION
+        fragment.enterTransition = FADE_IN_TRANSITION
+
         fragment.sharedElementEnterTransition = details
 
         fragmentManager.beginTransaction()
@@ -48,6 +54,10 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
 
         val details = TransitionSet()
         details.addTransition(ChangeBounds())
+
+        fragmentManager.fragments.first().exitTransition = FADE_OUT_TRANSITION
+        fragment.enterTransition = FADE_IN_TRANSITION
+
         fragment.sharedElementEnterTransition = details
 
         fragmentManager.beginTransaction()
