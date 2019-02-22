@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
         val fragmentManager = supportFragmentManager
         var fragment = fragmentManager.findFragmentById(R.id.fragmentContainer)
         if (fragment == null) {
-            fragment = MainFragment(this)
+            fragment = MainFragment(this, true)
             fragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragment)
                 .commit()
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(), MainFragmentListener, MapFragmentListe
 
         fragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
+            .addSharedElement(pathCanvas, getString(R.string.path_canvas_transition))
             .commit()
     }
 }
