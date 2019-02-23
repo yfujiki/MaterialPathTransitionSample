@@ -71,7 +71,6 @@ class AnimatablePathDrawable(points: MutableList<NormalizedPoint>, context: Cont
         val fraction = animator.animatedFraction
 
         points.clear()
-        path.reset()
 
         startPoints.forEachIndexed({ index, startPoint ->
             val endPoint = endPoints[index]
@@ -80,13 +79,6 @@ class AnimatablePathDrawable(points: MutableList<NormalizedPoint>, context: Cont
             val y = (endPoint.y - startPoint.y) * fraction + startPoint.y
 
             points.add(NormalizedPoint(x, y))
-
-            val b = bounds
-            if (index == 0) {
-                path.moveTo(x * b.width(), y * b.height())
-            } else {
-                path.lineTo(x * b.width(), y * b.height())
-            }
         })
 
         invalidateSelf()
